@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảnh báo: Bạn đã mất tài khoản!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: black;
+            padding: 60px;
+            color:red;
+        }
+        h1 {
+            color: red;
+            font-size: 100px;
+        }
+        p {
+            font-size: 18px;
+            color:red;
+        }
+        .alert {
+            color: red;
+            font-weight: bold;
+            font-size: 40px;
+        }
+        .normal {
+            color: green;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: black;
+            color: green;
+            border: 5px solid green;
+            border-radius: 5px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00FA9A;
+        }
+        #trollMessage {
+            display: none;
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cảnh báo bảo mật!</h1>
+    <p class="alert">Tài khoản của bạn đã bị xâm nhập!</p>
+    <p>Chúng tôi đã phát hiện hoạt động bất thường và bạn có thể đã bị mất quyền truy cập vào tài khoản của mình.</p>
+    <button onclick="recoverAccount()">Khôi phục tài khoản</button>
+
+    <p id="trollMessage"></p>
+
+    <script>
+        let clickCount = 0; // Biến đếm số lần click
+
+        function recoverAccount() {
+            clickCount++; // Tăng biến đếm mỗi lần click
+            document.querySelector('.alert').textContent = "Xử lý tài khoản...";
+
+            // Hiển thị thông báo tương ứng sau 2 giây
+            setTimeout(() => {
+                if (clickCount === 1) {
+                    document.querySelector('.alert').textContent = "Mật khẩu của bạn đã bị đổi!";
+                } else if (clickCount === 2) {
+                    document.querySelector('.alert').textContent = "Tài khoản của bạn đã bị khóa!";
+                } else if (clickCount === 3) {
+                    document.querySelector('.alert').textContent = "Mọi dữ liệu đã bị mất!";
+                    // Bắt đầu hẹn giờ 10 giây để hiển thị thông báo troll
+                    setTimeout(showTrollMessage, 10000);
+                }
+            }, 2000); // Thời gian chờ 2 giây
+        }
+
+        function showTrollMessage() {
+            document.querySelector('.alert').style.color = "green";
+            document.querySelector('.alert').textContent = "Chúc mừng! Bạn đã bị troll rồi!";
+            document.getElementById("trollMessage").style.display = "block";
+            document.getElementById("trollMessage").textContent = "Đừng lo lắng, đây chỉ là một trò đùa! 😊";
+        }
+    </script>
+</body>
+</html>
